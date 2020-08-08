@@ -1,14 +1,12 @@
 import React from 'react';
+import { Navbar } from './components/core/Navbar';
+import { SpeakerArea } from './components/SpeakerArea';
 
 function App() {
   return (
     <div className="App">
-      <h1>React spreaker</h1>
-      <br />
-      <button type="button" className="bg-teal-500">
-        <i className="fas fa-edit" />
-        Edit
-      </button>
+      <Navbar />
+      <SpeakerArea />
     </div>
   );
 }

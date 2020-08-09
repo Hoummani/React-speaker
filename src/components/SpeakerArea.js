@@ -5,8 +5,8 @@ import { SpeechText } from './SpeechText';
 export function SpeakerArea() {
   const [speechIngrediants, setSpeechIngrediants] = useState({
     lang: '',
-    pitch: '',
-    rate: '',
+    pitch: 1,
+    rate: 1,
     speechText: ''
   });
   // functions
@@ -22,6 +22,8 @@ export function SpeakerArea() {
           Tap to Speak
       </h2>
       <SpeakerStudio 
+        speechIngrediants={speechIngrediants}
+        setSpeechIngrediants={setSpeechIngrediants}
         handleChange={handleChange}
       />
       <SpeechText 

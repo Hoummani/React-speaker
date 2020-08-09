@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 export function SpeechText({ speechIngrediants, handleChange }) {
-
-  const [availableVoices, setAvailableVoices] = useState(speechSynthesis.getVoices());
   // functions
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
       speechIngrediants.lang !== '' &&
-      speechIngrediants.pitch !== '' &&
-      speechIngrediants.rate !== '' &&
       speechIngrediants.speechText !== ''
     ) 
     {
@@ -17,15 +13,6 @@ export function SpeechText({ speechIngrediants, handleChange }) {
     }
   }
 
-  // effects
-  useEffect(() => {
-    setAvailableVoices(speechSynthesis.getVoices());
-  }, []);
-  useEffect(() => {
-    if (availableVoices) {
-      console.log(availableVoices);
-    }
-  }, [availableVoices]);
   return (
     <div className="speech-text p-4 flex justify-center">
       <div className="lg:w-1/3 md:w-2/3 w-full">
@@ -37,6 +24,7 @@ export function SpeechText({ speechIngrediants, handleChange }) {
             className="bg-gray-200 h-32 appearance-none border-2 border-gray-200 
               rounded w-full py-2 px-4 text-gray-700 leading-tight 
               focus:outline-none focus:bg-white focus:border-purple-500"
+            placeholder="Type any things..."
           />
           <br />
           <button 

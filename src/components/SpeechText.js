@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 export function SpeechText({ speechIngrediants, handleChange }) {
+
+  const [availableVoices, setAvailableVoices] = useState(speechSynthesis.getVoices());
   // functions
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,9 +16,19 @@ export function SpeechText({ speechIngrediants, handleChange }) {
       console.log(speechIngrediants);
     }
   }
+
+  // effects
+  useEffect(() => {
+    setAvailableVoices(speechSynthesis.getVoices());
+  }, []);
+  useEffect(() => {
+    if (availableVoices) {
+      console.log(availableVoices);
+    }
+  }, [availableVoices]);
   return (
-    <div className="speech-text">
-      <div className="flex justify-center w-full">
+    <div className="speech-text p-4 flex justify-center">
+      <div className="lg:w-1/3 md:w-2/3 w-full">
         <form onSubmit={handleSubmit}>
           <textarea 
             name="speechText"

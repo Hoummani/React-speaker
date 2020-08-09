@@ -17,17 +17,17 @@ export function SpeakerArea() {
     });
   }
   return (
-    <div className="flex justify-center">
-      <div className="pt-6 w-full">
-        <SpeakerStudio 
-          handleChange={handleChange}
-        />
-        <br />
-        <SpeechText 
-          speechIngrediants={speechIngrediants}
-          handleChange={handleChange}
-        />
-      </div>
+    <div className="">
+      <h2 className="text-center text-3xl leading-9 font-extrabold text-gray-700 mt-4">
+          Tap to Speak
+      </h2>
+      <SpeakerStudio 
+        handleChange={handleChange}
+      />
+      <SpeechText 
+        speechIngrediants={speechIngrediants}
+        handleChange={handleChange}
+      />
     </div>
   )
 }

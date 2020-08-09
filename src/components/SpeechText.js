@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function SpeechText({ speechIngrediants, handleChange }) {
+export function SpeechText({ speechIngrediants, handleChange, synth }) {
   // functions
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -9,7 +9,28 @@ export function SpeechText({ speechIngrediants, handleChange }) {
       speechIngrediants.speechText !== ''
     ) 
     {
-      console.log(speechIngrediants);
+      // get speak text
+      const speakText = new SpeechSynthesisUtterance(speechIngrediants.speechText);
+
+      //speak end
+      speakText.onend = (e) => {
+        console.log("Speak end...");
+      };
+
+      // speak Error
+      speakText.onerror = e => {
+        console.error("Something went wrong...");
+      }
+
+      // set Pitch and Rate
+      speakText.pitch = speechIngrediants.pitch;
+      speakText.rate = speechIngrediants.rate;
+
+      // speak
+      synth.speak(speakText);
+    }
+    if (synth.speaking) {
+      return;
     }
   }
 

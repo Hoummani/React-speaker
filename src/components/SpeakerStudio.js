@@ -1,12 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
-export function SpeakerStudio({ handleChange, speechIngrediants, setSpeechIngrediants }) {
+export function SpeakerStudio({ handleChange, speechIngrediants, synth, setSpeechIngrediants }) {
 
   // states
   const [voices, setVoices] = useState([]);
-  // Init SpeechSynth API
-  const synth = window.speechSynthesis;
   // functions
   const getVoices = () => {
     setVoices(synth.getVoices());
@@ -18,6 +16,18 @@ export function SpeakerStudio({ handleChange, speechIngrediants, setSpeechIngred
       synth.onvoiceschanged = getVoices;
     };
   }, []);
+  useEffect(() => {
+    if (speechIngrediants.lang !== "") {
+      voices.forEach(voice => {
+        if (voice.lang === speechIngrediants.lang) {
+          setSpeechIngrediants({
+            ...speechIngrediants,
+            voice: voice
+          });
+        }
+      })
+    }
+  }, [speechIngrediants.lang]);
   return (
     <div className="speaker-studio p-4 flex justify-center">
       <div className="lg:w-1/3 md:w-2/3 w-full">

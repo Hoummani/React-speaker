@@ -3,12 +3,16 @@ import { SpeakerStudio } from './SpeakerStudio';
 import { SpeechText } from './SpeechText';
 
 export function SpeakerArea() {
+  // speech ingrediants
   const [speechIngrediants, setSpeechIngrediants] = useState({
     lang: '',
     pitch: 1,
     rate: 1,
-    speechText: ''
+    speechText: '',
+    voice: null
   });
+  // Init SpeechSynth API
+  const synth = window.speechSynthesis;
   // functions
   const handleChange = (e) => {
     setSpeechIngrediants({
@@ -23,12 +27,14 @@ export function SpeakerArea() {
       </h2>
       <SpeakerStudio 
         speechIngrediants={speechIngrediants}
+        synth={synth}
         setSpeechIngrediants={setSpeechIngrediants}
         handleChange={handleChange}
       />
       <SpeechText 
         speechIngrediants={speechIngrediants}
         handleChange={handleChange}
+        synth={synth}
       />
     </div>
   )
